@@ -16,6 +16,7 @@ class AuthUser(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=45, null=True)
     profile = models.ImageField(upload_to='uploads/usr/profile/', null=True)
     address = models.CharField(max_length=45, null=True)
+    phone_number = models.CharField(max_length=14, null=True)
     is_verify = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -42,7 +43,7 @@ def generate_uuid():
 
 
 class Base(models.Model):
-    uuid = models.UUIDField(default=generate_uuid())
+    uuid = models.UUIDField(default=generate_uuid(), editable=False)
     created_at = models.DateTimeField(auto_now=False, null=True)
     created_by = models.ForeignKey(
         AuthUser, related_to="+", on_delete=models.PROTECT, null=True)
