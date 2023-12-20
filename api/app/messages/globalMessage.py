@@ -16,4 +16,4 @@ UNAUTHORIZED = 'Unauthroized'
 
 # auth messages
 LOGIN_MESSAGE = 'Successfully Login.'
-REGISTER_MESSAGE = 'Register Successfully.'
+REGISTER_MESSAGE = 'Register Successfully. A mail is sent to your register email please verify.'

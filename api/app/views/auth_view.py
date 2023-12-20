@@ -107,7 +107,7 @@ class RegisterApiView(APIView):
 
                 if user:
                     #  generate token after registeration
-                    # SendMail.send_verify_mail()
+                    SendMail.send_verify_mail(first_name, last_name, email)
 
                     transaction.savepoint_commit(sid)
                     return Response({
@@ -116,5 +116,9 @@ class RegisterApiView(APIView):
                     }, status=status.HTTP_201_CREATED)
 
             except Exception as exe:
+                logger.error(str(exe), exc_info=True)
                 transaction.savepoint_rollback(sid)
-                pass
+                return Response({
+                    globalMessage.MESSAGE: globalMessage.ERROR_MESSAGE,
+                    'status': globalMessage.ERROR_CODE
+                }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

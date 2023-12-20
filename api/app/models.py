@@ -17,6 +17,7 @@ class AuthUser(AbstractBaseUser, PermissionsMixin):
     profile = models.ImageField(upload_to='uploads/usr/profile/', null=True)
     address = models.CharField(max_length=45, null=True)
     phone_number = models.CharField(max_length=14, null=True)
+    province = models.CharField(max_length=45, null=True)
     is_verify = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -37,7 +38,7 @@ class AuthUser(AbstractBaseUser, PermissionsMixin):
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
 
-
+# generate uuid 
 def generate_uuid():
     return uuid.uuid4().hex
 
@@ -46,9 +47,9 @@ class Base(models.Model):
     uuid = models.UUIDField(default=generate_uuid(), editable=False)
     created_at = models.DateTimeField(auto_now=False, null=True)
     created_by = models.ForeignKey(
-        AuthUser, related_to="+", on_delete=models.PROTECT, null=True)
+        AuthUser, related_name="+", on_delete=models.PROTECT, null=True)
     updated_at = models.DateTimeField(auto_now=False)
-    updated_by = models.ForeignKey(AuthUser, related_to="+", on_delete=models.PROTECT)
+    updated_by = models.ForeignKey(AuthUser, related_name="+", on_delete=models.PROTECT)
     is_delete = models.BooleanField(default=False)
 
     class Meta:

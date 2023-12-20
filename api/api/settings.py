@@ -31,8 +31,8 @@ DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = []
 
 
-AUTH_USER_MODEL = "app.AuthUser"
 
+AUTH_USER_MODEL = "app.AuthUser"
 
 # Application definition
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'drf_spectacular',
+    'app.apps.AppConfig'
 ]
 
 MIDDLEWARE = [

@@ -1,3 +1,5 @@
+from decouple import config
+
 from django.core.mail import send_mail
 from django.template.loader import get_template
 
@@ -11,7 +13,7 @@ class SendMail:
 
     @staticmethod
     def get_send_mail():
-        return 'send@gmail.com'
+        return 'sending@gmail.com'
 
     def send_verify_mail(self, subject):
         context = {
