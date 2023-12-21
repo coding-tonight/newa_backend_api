@@ -1,7 +1,7 @@
-import re
-
 from app.models import AuthUser
 from app.messages import globalMessage
+
+from app.regexs import ntc_phone_number_regex, ncell_phone_number_regex
 
 
 def register_validation(request):
@@ -33,6 +33,10 @@ def register_validation(request):
                     globalMessage.PASSWORD_NOT_MATCH
                 ]
             })
+
+        if phone_number:
+            if not ncell_phone_number_regex.match(phone_number) or not ntc_phone_number_regex.match(phone_number):
+               pass
 
         return error_list, first_name, last_name, email, password, profile, address, phone_number
 

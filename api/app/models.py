@@ -15,8 +15,9 @@ class AuthUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=45, null=True)
     last_name = models.CharField(max_length=45, null=True)
     profile = models.ImageField(upload_to='uploads/usr/profile/', null=True)
-    address = models.CharField(max_length=45, null=True)
     phone_number = models.CharField(max_length=14, null=True)
+    distrist = models.CharField(max_length=45, null=True)
+    city = models.CharField(max_length=45, null=True)
     province = models.CharField(max_length=45, null=True)
     is_verify = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -38,7 +39,9 @@ class AuthUser(AbstractBaseUser, PermissionsMixin):
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
 
-# generate uuid 
+# generate uuid
+
+
 def generate_uuid():
     return uuid.uuid4().hex
 
@@ -49,13 +52,14 @@ class Base(models.Model):
     created_by = models.ForeignKey(
         AuthUser, related_name="+", on_delete=models.PROTECT, null=True)
     updated_at = models.DateTimeField(auto_now=False)
-    updated_by = models.ForeignKey(AuthUser, related_name="+", on_delete=models.PROTECT)
+    updated_by = models.ForeignKey(
+        AuthUser, related_name="+", on_delete=models.PROTECT)
     is_delete = models.BooleanField(default=False)
 
     class Meta:
         abstract = True
-    
-    #  to prevent duplicate uuid 
+
+    #  to prevent duplicate uuid
     #  below method override default save method and also check duplicate uuid
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -65,3 +69,13 @@ class Base(models.Model):
 
                 self.uuid = uuid.uuid4().hex
         super().save(*args, **kwargs)
+
+
+# otp models
+class Otp(models.Model):
+    user = models.ForeignKey(AuthUser, related_name="+",
+                             on_delete=models.CASCADE)
+    otp = models.CharField(max_length=6)
+
+    class Meta:
+        db_table = 'otp'

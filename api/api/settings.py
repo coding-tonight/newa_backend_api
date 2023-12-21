@@ -31,7 +31,6 @@ DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = []
 
 
-
 AUTH_USER_MODEL = "app.AuthUser"
 
 # Application definition
@@ -91,6 +90,13 @@ DATABASES = {
         'PORT': config('MYSQL_PORT', default=3306),
     }
 }
+
+
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT', default=587)
 
 
 # Password validation

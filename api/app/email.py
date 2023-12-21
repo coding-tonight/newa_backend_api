@@ -1,32 +1,29 @@
-from decouple import config
+import secrets
+import smtplib
 
-from django.core.mail import send_mail
-from django.template.loader import get_template
+from email.message import EmailMessage
 
 
-# verify email
-class SendMail:
-    def __init__(self, first_name, last_name, to_mail):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.to_mail = to_mail
+def send_mail(sender_email, sender_password, receiver_email, subject):
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
 
-    @staticmethod
-    def get_send_mail():
-        return 'sending@gmail.com'
+        server.login(sender_email,
+                     sender_password)
 
-    def send_verify_mail(self, subject):
-        context = {
-            'first': self.first_name,
-            'last_name': self.last_name,
-        }
-        template = get_template('verify_email.html').render(context)
+        msg = EmailMessage()  # createing email dict or objects
 
-        send_mail(
-            subject,
-            None,
-            self.get_send_mail(),
-            [self.to_mail],
-            fail_silently=False,
-            html_message=template
-        )
+        otp = secrets.token_hex(4)  # generating otp
+        msg.set_content(f'Hi {receiver_email} your otp is {otp}')
+        msg['Subject'] = subject
+        msg['From'] = sender_email
+        msg['To'] = receiver_email
+        # send otp in the mail
+        server.send_message(msg)  # alternative sendmail()
+        server.close()
+
+        return otp
+
+    except Exception as exe:
+        raise Exception(exe)

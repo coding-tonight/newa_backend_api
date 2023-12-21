@@ -2,6 +2,7 @@ import logging
 from datetime import datetime
 from django.contrib.auth import authenticate
 from django.db import transaction
+from django.conf import settings
 
 from rest_framework.response import Response
 from rest_framework import status
@@ -12,8 +13,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from app.messages import globalMessage
 from app.validations import login_validation, register_validation
-from app.models import AuthUser
-from app.email import SendMail
+from app.models import AuthUser, Otp
+from app.email import send_mail
 
 
 logger = logging.getLogger('django')
@@ -106,10 +107,14 @@ class RegisterApiView(APIView):
                                                     phone_number=phone_number)
 
                 if user:
-                    #  generate token after registeration
-                    SendMail.send_verify_mail(first_name, last_name, email)
+                    #  generate token after registeration and send to the register email
+                    otp = send_mail(
+                        settings.EMAIL_HOST_USER, settings.EMAIL_HOST_PASSWORD, email, 'Email verification')
+                    
+                    Otp.objects.create(user=user, otp=otp)
 
                     transaction.savepoint_commit(sid)
+
                     return Response({
                         globalMessage.MESSAGE: globalMessage.REGISTER_MESSAGE,
                         'recevied_at': datetime.now()
