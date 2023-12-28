@@ -14,7 +14,7 @@ def send_mail(sender_email, sender_password, receiver_email, subject):
 
         msg = EmailMessage()  # createing email dict or objects
 
-        otp = secrets.token_hex(4)  # generating otp
+        otp = secrets.token_hex(2)  # generating otp
         msg.set_content(f'Hi {receiver_email} your otp is {otp}')
         msg['Subject'] = subject
         msg['From'] = sender_email

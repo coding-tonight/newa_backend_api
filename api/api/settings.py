@@ -43,7 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'drf_spectacular',
-    'app.apps.AppConfig'
+    'app.apps.AppConfig',
+    #  social media setup
+    'oauth2_provider',
+    "corsheaders",
+    # 'social_django',
+    # 'drf_social_oauth2',
 ]
 
 MIDDLEWARE = [
@@ -69,6 +74,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -82,7 +89,7 @@ WSGI_APPLICATION = 'api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': config('MYSQL_DATABASE_NAME'),
         'USER': config('MYSQL_USER'),
         'PASSWORD': config('MYSQL_PASSWORD'),
@@ -97,6 +104,25 @@ EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = config('EMAIL_PORT', default=587)
+
+#  cors settings
+if DEBUG:
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    CORS_ALLOWED_ORIGINS = [
+        # "http://localhost:3000/",
+        # "http://127.0.0.1:3000/",
+    ]
+
+
+#  api docs description
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Newa Api Docs',
+    'DESCRIPTION': 'Your project description',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+}
 
 
 # Password validation
