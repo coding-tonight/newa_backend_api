@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'drf_spectacular',
     'app.apps.AppConfig',
     #  social media setup
-    'oauth2_provider',
+    # 'oauth2_provider',
     "corsheaders",
     # 'social_django',
     # 'drf_social_oauth2',

@@ -30,7 +30,7 @@ class VerifyEmailView(APIView):
             if not error_list:
                 user_id = Otp.objects.get(otp=otp)
 
-                user = AuthUser.object.get(id=user_id)
+                user = AuthUser.objects.get(id=user_id.user.id)
                 user.is_verify = True
                 user.save()
 
@@ -46,7 +46,11 @@ class VerifyEmailView(APIView):
 
         except Exception as exe:
             logger.error(str(exe), exc_info=True)
-            
+
             return Response({
                 globalMessage.MESSAGE: globalMessage.ERROR_MESSAGE,
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        finally:
+            # delete the otp 
+            Otp.objects.get(otp=otp).delete()

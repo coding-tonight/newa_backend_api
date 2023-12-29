@@ -1,0 +1,87 @@
+2023-12-29 13:47:14,795 INFO C:\pawan staff\books\backend\api\app\views\verify_view.py changed, reloading. 266 
+2023-12-29 13:47:15,422 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:47:18,190 ERROR Field 'id' expected a number but got <AuthUser: dev.autonomoustechnepal@gmail.com>. 48 
+Traceback (most recent call last):
+  File "C:\pawan staff\books\backend\env\Lib\site-packages\django\db\models\fields\__init__.py", line 2112, in get_prep_value
+    return int(value)
+           ^^^^^^^^^^
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'AuthUser'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\pawan staff\books\backend\api\app\views\verify_view.py", line 33, in post
+    user = AuthUser.objects.get(id=user_id.user)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\pawan staff\books\backend\env\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\pawan staff\books\backend\env\Lib\site-packages\django\db\models\query.py", line 633, in get
+    clone = self._chain() if self.query.combinator else self.filter(*args, **kwargs)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\pawan staff\books\backend\env\Lib\site-packages\django\db\models\query.py", line 1476, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\pawan staff\books\backend\env\Lib\site-packages\django\db\models\query.py", line 1494, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "C:\pawan staff\books\backend\env\Lib\site-packages\django\db\models\query.py", line 1501, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "C:\pawan staff\books\backend\env\Lib\site-packages\django\db\models\sql\query.py", line 1600, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\pawan staff\books\backend\env\Lib\site-packages\django\db\models\sql\query.py", line 1632, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "C:\pawan staff\books\backend\env\Lib\site-packages\django\db\models\sql\query.py", line 1546, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\pawan staff\books\backend\env\Lib\site-packages\django\db\models\sql\query.py", line 1376, in build_lookup
+    lookup = lookup_class(lhs, rhs)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\pawan staff\books\backend\env\Lib\site-packages\django\db\models\lookups.py", line 30, in __init__
+    self.rhs = self.get_prep_lookup()
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\pawan staff\books\backend\env\Lib\site-packages\django\db\models\lookups.py", line 362, in get_prep_lookup
+    return super().get_prep_lookup()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\pawan staff\books\backend\env\Lib\site-packages\django\db\models\lookups.py", line 88, in get_prep_lookup
+    return self.lhs.output_field.get_prep_value(self.rhs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\pawan staff\books\backend\env\Lib\site-packages\django\db\models\fields\__init__.py", line 2114, in get_prep_value
+    raise e.__class__(
+TypeError: Field 'id' expected a number but got <AuthUser: dev.autonomoustechnepal@gmail.com>.
+2023-12-29 13:47:18,194 ERROR Internal Server Error: /api/v1/verify/email/ 241 
+2023-12-29 13:47:18,195 ERROR "POST /api/v1/verify/email/ HTTP/1.1" 500 35 212 
+2023-12-29 13:47:34,424 INFO C:\pawan staff\books\backend\api\app\views\verify_view.py changed, reloading. 266 
+2023-12-29 13:47:35,064 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:47:37,070 INFO "POST /api/v1/verify/email/ HTTP/1.1" 200 43 212 
+2023-12-29 13:47:53,118 INFO C:\pawan staff\books\backend\api\app\views\verify_view.py changed, reloading. 266 
+2023-12-29 13:47:53,722 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:48:06,147 INFO C:\pawan staff\books\backend\api\app\views\verify_view.py changed, reloading. 266 
+2023-12-29 13:48:06,790 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:48:33,914 INFO C:\pawan staff\books\backend\api\app\views\verify_view.py changed, reloading. 266 
+2023-12-29 13:48:34,508 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:50:33,889 INFO C:\pawan staff\books\backend\api\app\views\verify_view.py changed, reloading. 266 
+2023-12-29 13:50:34,475 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:50:45,783 INFO C:\pawan staff\books\backend\api\app\views\verify_view.py changed, reloading. 266 
+2023-12-29 13:50:46,389 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:51:21,842 INFO C:\pawan staff\books\backend\api\app\views\verify_view.py changed, reloading. 266 
+2023-12-29 13:51:22,453 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:51:34,810 INFO C:\pawan staff\books\backend\api\app\views\verify_view.py changed, reloading. 266 
+2023-12-29 13:51:35,400 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:51:44,608 INFO C:\pawan staff\books\backend\api\app\views\verify_view.py changed, reloading. 266 
+2023-12-29 13:51:45,266 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:51:47,129 INFO C:\pawan staff\books\backend\api\app\views\verify_view.py changed, reloading. 266 
+2023-12-29 13:51:47,730 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:52:06,370 INFO C:\pawan staff\books\backend\api\app\email.py changed, reloading. 266 
+2023-12-29 13:52:06,967 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:53:22,405 INFO C:\pawan staff\books\backend\api\app\email.py changed, reloading. 266 
+2023-12-29 13:53:23,255 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:53:28,267 INFO C:\pawan staff\books\backend\api\app\email.py changed, reloading. 266 
+2023-12-29 13:53:28,845 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:53:34,875 INFO C:\pawan staff\books\backend\api\app\email.py changed, reloading. 266 
+2023-12-29 13:53:35,460 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:53:42,566 INFO C:\pawan staff\books\backend\api\app\email.py changed, reloading. 266 
+2023-12-29 13:53:43,176 INFO Watching for file changes with StatReloader 668 
+2023-12-29 13:53:48,182 INFO C:\pawan staff\books\backend\api\app\email.py changed, reloading. 266 
+2023-12-29 13:53:48,770 INFO Watching for file changes with StatReloader 668 
