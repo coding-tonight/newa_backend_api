@@ -76,6 +76,7 @@ class Otp(models.Model):
     user = models.ForeignKey(AuthUser, related_name="+",
                              on_delete=models.CASCADE)
     otp = models.CharField(max_length=6)
+    created = models.TimeField()
 
     class Meta:
         db_table = 'otp'
