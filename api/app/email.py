@@ -16,7 +16,7 @@ def send_mail(sender_email, sender_password, receiver_email, subject):
 
         otp = secrets.token_hex(2)  # generating otp
         msg.set_content(f'''Hi {receiver_email} your otp is {otp}.
-                            for one time use only.
+                            for one time use only and last for 2 minutes only.
                         ''')
         msg['Subject'] = subject
         msg['From'] = sender_email

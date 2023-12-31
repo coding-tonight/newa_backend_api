@@ -186,6 +186,9 @@ SIMPLE_JWT = {
     "UPDATE_LAST_LOGIN": False,
 }
 
+#  In minutes
+OTP_LIFE_TIME = 2
+
 
 LOGGING = {
     'version': 1,

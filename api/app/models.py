@@ -1,3 +1,4 @@
+from datetime import datetime
 import uuid
 
 from django.utils import timezone
@@ -76,7 +77,7 @@ class Otp(models.Model):
     user = models.ForeignKey(AuthUser, related_name="+",
                              on_delete=models.CASCADE)
     otp = models.CharField(max_length=6)
-    created = models.TimeField()
+    created = models.TimeField(default=datetime.now().strftime('%H:%M:%S'))
 
     class Meta:
         db_table = 'otp'

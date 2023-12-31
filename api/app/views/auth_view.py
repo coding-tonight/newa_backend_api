@@ -50,7 +50,7 @@ class LoginApiView(APIView):
                 refresh = RefreshToken()
                 user_detail = AuthUser.objects.get(id=user.pk)
 
-                MSG = { 
+                MSG = {
                     globalMessage.MESSAGE: globalMessage.LOGIN_MESSAGE,
                     'refresh_token': str(refresh),
                     'access_token': str(refresh.access_token),
